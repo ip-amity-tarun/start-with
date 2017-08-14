@@ -1,0 +1,17 @@
+.profile__header {
+  padding: 30px 0;
+}
+.profile__recommend {
+  margin-top: 25px;
+  font-size: 12px;
+}
+.follow__mail {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.profile__list {
+  text-transform: uppercase;
+}
+.profile__list .list-inline-item {
+  margin-right: 15px;
+}

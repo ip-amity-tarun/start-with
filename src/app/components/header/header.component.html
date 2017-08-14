@@ -1,0 +1,48 @@
+<nav class="navbar">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="navbar-header">
+          <a routerLink="">
+            <img src="assets/images/logo_sm.png" class="logo">
+          </a>
+          <!--<span class="dropdown">
+            <a class="discover btn btn-link dropdown-toggle" data-toggle="dropdown">Discover
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Actors</a></li>
+              <li><a href="#">Actresses</a></li>
+              <li><a href="#">Singers</a></li>
+            </ul>
+          </span>-->
+          <div ngbDropdown class="d-inline-block">
+            <a class="discover" id="dropdownBasic1" ngbDropdownToggle>Discover</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item">Action - 1</button>
+              <button class="dropdown-item">Another Action</button>
+              <button class="dropdown-item">Something else is here</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <form>
+            <div class="search input-group">
+              <input type="text" class="form-control search__bar" placeholder="Search">
+              <div class="input-group-btn">
+                <button class="btn btn-secondary" type="submit">
+                  <span class="icon icon-search"></span>
+                </button>
+              </div>
+            </div>
+        </form>
+      </div>
+      <div class="col-sm-2">
+          <div class="profile float-right">
+            <button (click)="logout()">logout</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</nav>

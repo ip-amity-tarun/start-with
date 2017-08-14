@@ -1,0 +1,129 @@
+.logo {
+  width: 120px;
+  margin-top: 24px;
+  margin-right:50px;
+}
+.btn-link {
+  color: #fff;
+}
+.btn-link:hover {
+  text-decoration: none;
+  color: #fb6202;
+}
+.login {
+  margin-top: 16px;
+}
+/* =============================
+    Header
+   ============================= */
+.navbar {
+  border-radius: 0px;
+  margin-bottom: 0px;
+  min-height: 70px;
+  background-color: transparent;
+  margin-top: 15px;
+}
+.navbar-nav {
+  margin-top: 8px;
+}
+.nav li>a {
+  text-transform: uppercase;
+  background-color: transparent;
+  color: #fff;
+}
+.nav>li>a:focus, .nav>li>a:hover {
+  text-decoration: none;
+  background-color: transparent;
+  color: #dfa953;
+}
+.navbar-toggle .icon-bar {
+  background-color: #fff;
+  margin-top: 10px;
+}
+.headerbg {
+  background: url('/assets/images/bg.jpg');
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+.headerbg:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #653b99;
+  opacity: .6;
+}
+.headerbg__diagonal {
+  background: #fff;
+  position:absolute;
+  top: 540px;
+  left: -10px;
+  width: 110%;
+  height: 40%;
+  transform-origin: center top;
+  transform: rotate(4deg);
+}
+.headerbg__text {
+  text-align: center;
+  margin-top: 80px;
+  color: #fff;
+}
+.headerbg__text .btn {
+  margin-top: 30px;
+}
+.headerbg__fg {
+  min-height: 300px;
+}
+.headerbg__fg--image {
+  width: 40%;
+  position: absolute;
+  text-align: center;
+  left: 30%;
+}
+.featured {
+  text-align: center;
+}
+.works {
+  padding: 80px 0px;
+  text-align: center;
+}
+.testimonials {
+  padding: 0px 0px 100px;
+  text-align: center;
+}
+.testimonials__text {
+  background-color: #f2f2f2;
+  padding: 15px;
+  border-radius: 4px;
+}
+.parallax {
+  background-image: url('/assets/images/bg.jpg');
+  height: 300px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  padding: 50px 0px;
+}
+.parallax:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #653b99;
+  opacity: .6;
+}

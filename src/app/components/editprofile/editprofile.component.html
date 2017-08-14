@@ -1,0 +1,96 @@
+<nav class="navbar"></nav>
+<div class="slideshow__pages">
+  <div>{{title}}</div>
+  <div>
+    <input type="file" ng2FileSelect [uploader]="fileUploader"  />
+    <button (click)="fileUploader.uploadAll()">Upload</button>
+  </div>
+  <div>
+    <form #profileForm="ngForm" >
+      <div class="form-group">
+        <label for="info">Info</label>
+        <input type="text" id="info" class="form-control"
+               name="info" [(ngModel)]="profile.info" #info="ngModel" required>
+        <div *ngIf="info.errors && (info.dirty || info.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!info.errors.required">
+            Info is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="height">Height</label>
+        <input type="text" id="height" class="form-control"
+               name="height" [(ngModel)]="profile.height" #height="ngModel" required>
+        <div *ngIf="height.errors && (height.dirty || height.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!height.errors.required">
+            Height is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight</label>
+        <input type="text" id="weight" class="form-control"
+               name="weight" [(ngModel)]="profile.weight" #weight="ngModel" required>
+        <div *ngIf="weight.errors && (weight.dirty || weight.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!weight.errors.required">
+            Weight is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="BodyType">BodyType</label>
+        <input type="text" id="BodyType" class="form-control"
+               name="BodyType" [(ngModel)]="profile.BodyType" #BodyType="ngModel" required>
+        <div *ngIf="BodyType.errors && (BodyType.dirty || BodyType.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!BodyType.errors.required">
+            BodyType is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Complexion">Complexion</label>
+        <input type="text" id="Complexion" class="form-control"
+               name="Complexion" [(ngModel)]="profile.Complexion" #Complexion="ngModel" required>
+        <div *ngIf="Complexion.errors && (Complexion.dirty || Complexion.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!Complexion.errors.required">
+            Complexion is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Ethinicity">Ethinicity</label>
+        <input type="text" id="Ethinicity" class="form-control"
+               name="Ethinicity" [(ngModel)]="profile.Ethinicity" #Ethinicity="ngModel" required>
+        <div *ngIf="Ethinicity.errors && (Ethinicity.dirty || Ethinicity.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!Ethinicity.errors.required">
+            Ethinicity is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div *ngFor="let cont of profile.contact; let i=index">
+          <span class="glyphicon glyphicon-remove pull-right" *ngIf="profile.contact.length > 1" (click)="removeContact(i)">X</span>
+          <label>Contact {{i+1}}</label>
+          <label>Phone number</label>
+          <input type="text" class="form-control"name="phone_number" [(ngModel)]="cont.phone_number" #Ethinicity="ngModel" required>
+          <label>Phone type</label>
+          <input type="text" class="form-control"name="phone_type" [(ngModel)]="cont.phone_type" #Ethinicity="ngModel" required>
+        </div>
+      </div>
+    </form>
+    <tag-input [(ngModel)]="profile.skill_category">
+      <tag-input-dropdown [autocompleteItems]="['Actor', 'Model', 'Director','Dancer']">
+      </tag-input-dropdown>
+    </tag-input>
+    <input type="submit" value="Next" [disabled]="!profileForm.form.valid" (click)="editProfile()">
+
+  </div>
+</div>
+<footer-app></footer-app>
+<pre>form value: <br>{{profile | json}}</pre>

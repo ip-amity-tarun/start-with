@@ -1,0 +1,37 @@
+<header-app></header-app>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active">Library</li>
+      </ol>
+    </div>
+    <div class="col-sm-6">
+      <a href="" class="profile__recommend btn btn-primary float-right">Recommend</a>
+    </div>
+  </div>
+  <div class="row profile__header">
+    <div class="col-sm-4">
+      <div class="media">
+        <img class="d-flex mr-4 rounded-circle" src="{{profile.profile_pic}}" alt="" style="width:60px">
+        <div class="media-body">
+          <h5 class="mt-0">{{user.first_name+ ' '+ user.last_name}}</h5>
+          <div class="follow__mail">
+            <a href="" class="btn btn-primary">Follow</a>
+            <a href="" class="btn btn-primary btn-mail"><span class="icon icon-mail-light"></span></a>
+          </div>
+        </div>
+      </div>
+      <hr />
+
+      <hr />
+
+      {{title}}
+      <div>{{user.first_name}}</div>
+      <div>{{profile.info}}</div>
+    </div>
+  </div>
+</div>
+<footer-app></footer-app>
+<pre>{{user | json}}</pre>

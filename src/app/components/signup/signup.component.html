@@ -1,0 +1,69 @@
+<nav class="navbar"></nav>
+<div class="slideshow__pages">
+  <div>{{title}}</div>
+  <div>
+    <form #sigunupForm="ngForm" >
+      <div class="form-group">
+        <label for="first_name">First name</label>
+        <input type="text" id="first_name" class="form-control"
+               name="first_name" [(ngModel)]="user.first_name" #first_name="ngModel" required>
+        <div *ngIf="first_name.errors && (first_name.dirty || first_name.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!first_name.errors.required">
+            Fist name is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="last_name">Last name</label>
+        <input type="text" id="last_name" class="form-control"
+               name="last_name" [(ngModel)]="user.last_name" #last_name="ngModel" required>
+        <div *ngIf="last_name.errors && (last_name.dirty || last_name.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!last_name.errors.required">
+            Last name is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control"
+               name="email" [(ngModel)]="user.email" #email="ngModel" required email>
+        <div *ngIf="email.errors && (email.dirty || email.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!email.errors.required">
+            Email is required
+          </div>
+          <div [hidden]="!email.errors.email">
+            Email is not valid
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" class="form-control"
+               name="username" [(ngModel)]="user.username" #username="ngModel" required>
+        <div *ngIf="username.errors && (username.dirty || username.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!username.errors.required">
+            Username is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control"
+               name="password" [(ngModel)]="user.password" #password="ngModel" required>
+        <div *ngIf="password.errors && (password.dirty || password.touched)"
+             class="alert alert-danger">
+          <div [hidden]="!password.errors.required">
+            Password is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Singup" [disabled]="!sigunupForm.form.valid" (click)="signup()">
+      </div>
+    </form>
+</div>
+<footer-app></footer-app>
