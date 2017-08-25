@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers, Response} from '@angular/http';
 import {Observable} from 'rxjs/';
 
-import { LoginService } from './login.service';
+import { AuthService } from './auth.service';
 
 import { Profile } from '../models/profile.model';
 
@@ -16,7 +16,7 @@ export class ProfileService {
 
   constructor(
     private http: Http,
-    private loginService: LoginService,
+    private authService: AuthService,
     private config: Config
   ) {
 
@@ -31,7 +31,7 @@ export class ProfileService {
     ).map((res: Response) => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   };
   createProfile(profile): Observable<Response> {
-    const token = this.loginService.getToken().token;
+    const token = this.authService.getToken().token;
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`});
     const options = new RequestOptions({ headers: headers });
     return this.http.post(
@@ -41,7 +41,7 @@ export class ProfileService {
     ).map((res: Response) => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
   editProfile(profile: Profile): Observable<Response> {
-    const token = this.loginService.getToken().token;
+    const token = this.authService.getToken().token;
     console.log('token', token, profile);
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`});
     const options = new RequestOptions({ headers: headers });

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 
 import {Token} from '../../models/token.model';
 
@@ -14,18 +14,18 @@ export class LoginComponent {
   title = 'Login';
   user = {};
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private router: Router
   ) {
-    if (this.loginService.session.isActive) {
+    if (this.authService.session.isActive) {
       this.router.navigate(['/profile']);
     }
   }
   login() {
     console.log(this.user);
-    this.loginService.login(this.user).subscribe(data => {
+    this.authService.login(this.user).subscribe(data => {
       const token =  data.json() as Token;
-      this.loginService.startSession(token).then(session => {
+      this.authService.startSession(token).then(session => {
         console.log(session);
         this.router.navigate(['/profile']);
       });

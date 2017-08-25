@@ -10,13 +10,13 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 
-import { LoginService } from './login.service';
+import { AuthService } from './auth.service';
 
 @Injectable()
 export class LoginGuard implements CanActivate {
 
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -25,7 +25,7 @@ export class LoginGuard implements CanActivate {
   }
 
   checkLogin(): boolean {
-    if (this.loginService.session.isActive) {
+    if (this.authService.session.isActive) {
       return true;
     }
     this.router.navigate(['/login']);

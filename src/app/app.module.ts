@@ -26,8 +26,7 @@ import { HeaderComponent } from './components/header/header.component';
 
 import {UtilService} from './services/util.service';
 import { LoginGuard } from './services/loginguard.service';
-import { LoginService } from './services/login.service';
-import { SignupService } from './services/signup.service';
+import { AuthService } from './services/auth.service';
 import { ProfileService } from './services/profile.service';
 
 import { Token } from './models/token.model';
@@ -72,8 +71,7 @@ import { AppRoutingModule } from './app-routing.module';
     Config,
     LoginGuard,
     UtilService,
-    LoginService,
-    SignupService,
+    AuthService,
     ProfileService,
     Token,
     Session,

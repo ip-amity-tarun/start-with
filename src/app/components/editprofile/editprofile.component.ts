@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FileUploader } from 'ng2-file-upload';
 
 import { ProfileService } from '../../services/profile.service';
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 import { Config } from '../../config/config.config';
 
 import { Profile } from '../../models/profile.model';
@@ -19,12 +19,12 @@ export class EditProfileComponent {
   public fileUploader: FileUploader;
   constructor(
     private profileService: ProfileService,
-    private loginService: LoginService,
+    private authService: AuthService,
     private router: Router,
     public profile: Profile,
     private config: Config
   ) {
-    this.loginService.getSession().then(session => {
+    this.authService.getSession().then(session => {
       console.log('profile init', session.isActive);
       if ( session.isActive ) {
         this.profileService.getUserByToken(session.token.token).subscribe(res => {
@@ -37,7 +37,7 @@ export class EditProfileComponent {
       url: `${this.config.apiBase}user/picture`
     });
     this.fileUploader.setOptions({
-      authToken: `Bearer ${this.loginService.token.token}`,
+      authToken: `Bearer ${this.authService.token.token}`,
       itemAlias: 'file',
       additionalParameter: {file_type: 'profile'}
     });
@@ -45,7 +45,7 @@ export class EditProfileComponent {
 
   editProfile() {
     console.log(this.profile);
-    this.loginService.getSession().then(session => {
+    this.authService.getSession().then(session => {
       console.log('session', session.isActive);
       if ( session.isActive ) {
         this.profileService.editProfile(this.profile).subscribe(res => {
