@@ -27,9 +27,7 @@ export class AppComponent {
         }else {
           if (new Date(token.expire).getTime() > new Date().getTime()) {
             console.log('active user restart the session');
-            this.authService.getSession().then((Session) => {
-              this.router.navigate(['/profile']);
-            });
+            this.authService.getSession().then((Session) => {});
           }else {
             console.log('refresh token');
           }
