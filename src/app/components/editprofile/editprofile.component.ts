@@ -29,7 +29,7 @@ export class EditProfileComponent {
       if ( session.isActive ) {
         this.profileService.getUserByToken(session.token.token).subscribe(res => {
           console.log(res);
-          this.profile = res.json().profile;
+          this.profile = res;
         });
       }
     });
@@ -50,7 +50,7 @@ export class EditProfileComponent {
       if ( session.isActive ) {
         this.profileService.editProfile(this.profile).subscribe(res => {
           console.log(res);
-          this.profile = res.json().profile;
+          this.profile = res;
           this.router.navigate(['/profile']);
         });
       }

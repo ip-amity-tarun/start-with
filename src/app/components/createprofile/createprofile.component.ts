@@ -25,7 +25,7 @@ export class CreateProfileComponent {
       if ( session.isActive ) {
         this.profileService.createProfile(this.profile).subscribe(res => {
           console.log(res);
-          this.profile = res.json().profile;
+          this.profile = res;
           this.router.navigate(['/profile']);
         });
       }

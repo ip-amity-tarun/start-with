@@ -2,7 +2,7 @@
  * Created by tarun on 17/7/17.
  */
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers, Response} from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/';
 
 import { AuthService } from './auth.service';
@@ -15,40 +15,31 @@ import { Config } from '../config/config.config';
 export class ProfileService {
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private authService: AuthService,
     private config: Config
   ) {
 
   }
 
-  getUserByToken(token): Observable<Response> {
-    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`});
-    const options = new RequestOptions({ headers: headers });
+  getUserByToken(token): Observable<Profile> {
     return this.http.get(
-      `${this.config.apiBase}user/profile`,
-      options
+      `${this.config.apiV}/user/profile`,
+      {}
     ).map((res: Response) => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   };
-  createProfile(profile): Observable<Response> {
-    const token = this.authService.getToken().token;
-    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`});
-    const options = new RequestOptions({ headers: headers });
+  createProfile(profile): Observable<Profile> {
     return this.http.post(
-      `${this.config.apiBase}user/profile`,
+      `${this.config.apiV}/user/profile`,
       profile,
-      options
+      {}
     ).map((res: Response) => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
-  editProfile(profile: Profile): Observable<Response> {
-    const token = this.authService.getToken().token;
-    console.log('token', token, profile);
-    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`});
-    const options = new RequestOptions({ headers: headers });
+  editProfile(profile: Profile): Observable<Profile> {
     return this.http.patch(
-      `${this.config.apiBase}user/profile`,
+      `${this.config.apiV}/user/profile`,
       profile,
-      options
+      {}
     ).map((res: Response) => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 }

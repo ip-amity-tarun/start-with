@@ -4,12 +4,12 @@
   <div>
     <form #loginForm="ngForm" >
       <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" class="form-control"
-               name="username" [(ngModel)]="user.username" #username="ngModel" required>
-        <div *ngIf="username.errors && (username.dirty || username.touched)"
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control"
+               name="username" [(ngModel)]="user.email" #email="ngModel" required>
+        <div *ngIf="email.errors && (email.dirty || email.touched)"
              class="alert alert-danger">
-          <div [hidden]="!username.errors.required">
+          <div [hidden]="!email.errors.required">
             Username is required
           </div>
         </div>

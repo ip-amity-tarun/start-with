@@ -2,7 +2,7 @@
  * Created by tarun on 16/7/17.
  */
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers, Response} from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import {Observable} from 'rxjs/';
 import { LocalStorageService } from 'angular-2-local-storage';
 
@@ -16,7 +16,7 @@ import { Config } from '../config/config.config';
 export class AuthService {
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private localStorageService: LocalStorageService,
     public token: Token,
     public session: Session,
@@ -25,26 +25,19 @@ export class AuthService {
     this.token = new Token();
   }
 
-  signup(user): Observable<Response> {
-
-    const body = JSON.stringify({ user });
-    const headers = new Headers({'Content-Type': 'application/json'});
-    const options = new RequestOptions({ headers: headers });
-
+  signup(user): Observable<Token> {
     return this.http.post(
-      `${this.config.apiBase}register`,
+      `register`,
       user,
-      options
+      {}
     ).map((res: Response) => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   };
 
-  login(user): Observable<Response> {
-    const headers = new Headers({'Content-Type': 'application/json'});
-    const options = new RequestOptions({ headers: headers });
+  login(user): Observable<Token> {
     return this.http.post(
-      `${this.config.apiBase}login`,
+      `${this.config.apiV}/login`,
       user,
-      options
+      {}
     ).map((res: Response) => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   };
 
@@ -74,12 +67,10 @@ export class AuthService {
 
   };
 
-  getUserByToken(token): Observable<Response> {
-    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`});
-    const options = new RequestOptions({ headers: headers });
+  getUserByToken(token): Observable<Profile> {
     return this.http.get(
-      `${this.config.apiBase}user/profile`,
-      options
+      `${this.config.apiV}/user/profile`,
+      {}
     ).map((res: Response) => res).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   };
   startSession(token: Token): Promise<Session> {
@@ -89,8 +80,8 @@ export class AuthService {
       this.session.token = token;
       this.session.isActive = true;
       this.getUserByToken(this.token.token).subscribe((res) => {
-        this.session.user = res.json().user;
-        this.session.profile = res.json().profile;
+        // this.session.user = res.json().user;
+        this.session.profile = res;
         this.saveUser(this.session.user);
         this.saveProfile(this.session.profile);
         console.log('session in start', this.session);

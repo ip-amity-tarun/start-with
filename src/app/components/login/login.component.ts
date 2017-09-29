@@ -24,7 +24,7 @@ export class LoginComponent {
   login() {
     console.log(this.user);
     this.authService.login(this.user).subscribe(data => {
-      const token =  data.json() as Token;
+      const token: Token =  data;
       this.authService.startSession(token).then(session => {
         console.log(session);
         this.router.navigate(['/profile']);

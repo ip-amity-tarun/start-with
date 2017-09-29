@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FileUploadModule } from 'ng2-file-upload';
@@ -10,6 +10,7 @@ import { TagInputModule } from 'ngx-chips';
 
 
 import { Config } from './config/config.config';
+import { MyInterceptor } from './interceptors/MyInterceptor';
 
 import { AppComponent } from './components/app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -42,7 +43,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -68,6 +69,10 @@ import { AppRoutingModule } from './app-routing.module';
     HeaderComponent
   ],
   providers: [
+    {provide: HTTP_INTERCEPTORS,
+      useClass: MyInterceptor,
+      multi: true
+    },
     Config,
     LoginGuard,
     UtilService,

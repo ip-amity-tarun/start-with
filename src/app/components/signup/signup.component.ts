@@ -24,7 +24,7 @@ export class SignupComponent {
     console.log(this.user);
     this.authService.signup(this.user).subscribe(data => {
       console.log(data);
-      const token =  data.json() as Token;
+      const token: Token =  data;
       this.authService.startSession(token).then(session => {
         if ( session.isActive ) {
           console.log(session);
